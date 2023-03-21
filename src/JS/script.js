@@ -4,6 +4,7 @@ let data = [
 ];
 $(".success").hide();
 $(".error").hide();
+$("#update_product").hide();
 
 // Diaplay
 function display() {
@@ -20,20 +21,22 @@ function display() {
 }
 display();
 
-// Exit Function 
-let flag = 0;
+// Exit Function
 let some_val = 0;
 function value_exit(val) {
-  flag = 1;
+  $('.required').css('border-color' , '#000000');
   $("#product_sku").val(data[val].sku);
   $("#product_name").val(data[val].name);
   $("#product_price").val(data[val].price);
   $("#product_quantity").val(data[val].quantity);
   some_val = val;
+  $("#update_product").show();
+  $("#add_product").hide();
 }
 
 // Delete Function
 function value_delete(val) {
+  $('.required').css('border-color' , '#000000');
   let confirms = confirm("Are you really sure");
   if (confirms == true) {
     data.splice(val, 1);
@@ -43,9 +46,10 @@ function value_delete(val) {
   }
 }
 
-// Add Product Function 
+// Add Product Function
 $(document).ready(function () {
   $("#add_product").click(function () {
+    $('.required').css('border-color' , '#000000');
     let a = $("#product_sku").val();
     let b = $("#product_name").val();
     let c = $("#product_price").val();
@@ -56,30 +60,54 @@ $(document).ready(function () {
       price: c,
       quantity: d,
     };
-    if (flag == 0 || data.length==0) {
-      if (a && b && c && d) {
-        data.push(lst);
-        display();
-        $(".success").show(1000);
-        $(".success").hide(2000);
-      } else {
-        $(".error").show(1000);
-        $(".error").hide(2000);
-      }
+    if (a && b && c && d) {
+      data.push(lst);
+      display();
+      $(".success").text("Product Added Successfully")
+      $(".success").show(1000);
+      $(".success").hide(2000);
     } else {
-      if (a && b && c && d) {
-        data[some_val].sku = a;
-        data[some_val].name = b;
-        data[some_val].price = c;
-        data[some_val].quantity = d;
-        display();
-        $(".success").show(1000);
-        $(".success").hide(2000);
-      }
-      else{
-        $(".error").show(1000);
-        $(".error").hide(2000);
-      }
+      $('.required').each(function() {
+        if($(this).val()) {
+          $(this).css('border-color' , '#000000');
+        }
+        else{
+          $('.required').each(function() {
+            if($(this).val() == '') {
+               $(this).css('border-color' , '#ff0000');
+            }
+          })
+        }
+      })
+      $(".error").show(1000);
+      $(".error").hide(2000);
     }
+  });
+  $("#update_product").click(function () {
+    $('.required').css('border-color' , '#000000');
+    let a = $("#product_sku").val();
+    let b = $("#product_name").val();
+    let c = $("#product_price").val();
+    let d = $("#product_quantity").val();
+    if (a && b && c && d) {
+      data[some_val].sku = a;
+      data[some_val].name = b;
+      data[some_val].price = c;
+      data[some_val].quantity = d;
+      display();
+      $(".success").text("Product Updated Successfully")
+      $(".success").show(1000);
+      $(".success").hide(2000);
+    } else {
+      $('.required').each(function() {
+        if($(this).val() == '') {
+           $(this).css('border-color' , '#FF0000');
+        }
+      })
+      $(".error").show(1000);
+      $(".error").hide(2000);
+    }
+    $("#update_product").hide();
+    $("#add_product").show();
   });
 });

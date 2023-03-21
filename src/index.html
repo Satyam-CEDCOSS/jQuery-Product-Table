@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<head>
+<head> 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
 	<title>jQuery</title>
 	<link rel="stylesheet" type="text/css" href="./CSS/style.css">
@@ -11,28 +11,29 @@
 		<div id="add_product_form">
 			<label for="product_sku">
 				<span>Product SKU</span> 
-				<input type="text" name="product_sku" id="product_sku">
+				<input type="number" name="product_sku" id="product_sku" class="required">
 			</label>
 			<label for="product_name">
 				<span>Product Name</span> 
-				<input type="text" name="product_name" id="product_name">
+				<input type="text" name="product_name" id="product_name" class="required">
 			</label>
 			<label for="product_price">
 				<span>Product Price</span> 
-				<input type="text" name="product_price" id="product_price">
+				<input type="number" name="product_price" id="product_price" class="required">
 			</label>
 			<label for="product_quantity">
 				<span>Product Quantity</span> 
-				<input type="text" name="product_quantity" id="product_quantity">
+				<input type="text" name="product_quantity" id="product_quantity" class="required">
 			</label>
 			<p class="submit">
 				<input type="button" name="add_product" id="add_product" value="Add Product">
+				<input type="button" name="update_product" id="update_product" value="Update Product">
 			</p>
 		</div>
 		<!-- show notification -->
 		<div id="notification">
 			<div class="success">Product Added Successfully.<a href="#" class="close">X</a></div>
-			<div class="error">There is some problem.<a href="#" class="close">X</a></div>
+			<div class="error">Fill Missing Coloumn.<a href="#" class="close">X</a></div>
 		</div>
 		<!-- display product  -->
 		<div id="product_list">

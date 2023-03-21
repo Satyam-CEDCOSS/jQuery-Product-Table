@@ -5,6 +5,7 @@ let data = [
 $(".success").hide();
 $(".error").hide();
 
+// Diaplay
 function display() {
   let show = "";
   let cnt = 0;
@@ -19,6 +20,7 @@ function display() {
 }
 display();
 
+// Exit Function 
 let flag = 0;
 let some_val = 0;
 function value_exit(val) {
@@ -30,6 +32,7 @@ function value_exit(val) {
   some_val = val;
 }
 
+// Delete Function
 function value_delete(val) {
   let confirms = confirm("Are you really sure");
   if (confirms == true) {
@@ -40,6 +43,7 @@ function value_delete(val) {
   }
 }
 
+// Add Product Function 
 $(document).ready(function () {
   $("#add_product").click(function () {
     let a = $("#product_sku").val();
